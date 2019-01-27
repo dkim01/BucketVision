@@ -104,9 +104,9 @@ class GearLift:
             # and height as-is, but near 90 we will swap the height
             # and width to keep things normalized
         
-            if (angle_deg >= 85.0):
+            if (angle_deg >= 70.0):
                 w,h = h,w    # swap
-                angle_deg -= 90.0
+                angle_deg -= 75.0
             
             # Objects large than certain sizes should be ignored complete
             # since they are likely reflections saturating the image
@@ -136,7 +136,7 @@ class GearLift:
             # of the extent of the pieces combined do make the desired
             # ratio. We DON'T solve that problem here; we will do that
             # after determining that we have a missing detection
-            if (angle_deg <= 5.0):
+            if (angle_deg <= 20.0):
                 if (0.25 <= ratio <= 0.45):        # 2"/5" --> 0.4 + tolerance
 
                     detections.append(rect)
@@ -326,7 +326,7 @@ class GearLift:
                     # Using abs() since we don't care which detection is right or left
                     deltaX = abs(xi - xj)
                     distanceRatioX = deltaX / ((wi + wj)/2)  # Distance ratio using retro tape width as common factor
-                    expectedRatioX = 4.125             # (10.25 - 2.0) / 2.0 inches
+                    expectedRatioX = 3.0             # ((8.0-2.0)/2.0)
                     ratioToleranceX = 0.5            # Corresponds to 1" over the 2" baseline
                     lowRatioX = expectedRatioX - ratioToleranceX
                     highRatioX = expectedRatioX + ratioToleranceX
@@ -388,7 +388,7 @@ class GearLift:
                 # Using abs() since we don't care which detection is right or left
                 deltaX = abs(x2 - x1)
                 distanceRatioX = deltaX / ((w1 + w2)/2)  # Distance ratio using retro tape width as common factor
-                expectedRatioX = 4.125             # (10.25 - 2.0) / 2.0 inches
+                expectedRatioX = 3.0             # (10.25 - 2.0) / 2.0 inches
                 ratioToleranceX = 0.5            # Corresponds to 1" over the 2" baseline
                 lowRatioX = expectedRatioX - ratioToleranceX
                 highRatioX = expectedRatioX + ratioToleranceX
